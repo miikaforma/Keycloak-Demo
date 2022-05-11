@@ -1,0 +1,43 @@
+version: '3.2'
+
+services:
+  keycloakDB:
+    image: mariadb:latest
+    ports:
+      - "3406:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: keycloak
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: keycloak
+    volumes:
+      - demo_keycloakdata:/var/lib/mysql
+
+  keycloakservice:
+    image: codecontrol/toivo-keycloak
+    # volumes:
+    #   - ./imports:/opt/jboss/keycloak/imports
+    #   - ./export:/opt/jboss/keycloak-export
+    ports:
+      - 8080:8080
+    command: 
+      - -b 0.0.0.0
+      - -Dkeycloak.profile.feature.token_exchange=enabled
+      - -Dkeycloak.migration.action=export
+      - -Dkeycloak.migration.provider=dir
+      - -Dkeycloak.migration.dir=/opt/jboss/keycloak-export
+      - -Dkeycloak.migration.usersExportStrategy=SKIP
+    environment:
+      DB_VENDOR: mariadb
+      DB_ADDR: keycloakDB
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: keycloak
+      KEYCLOAK_USER: keycloak
+      KEYCLOAK_PASSWORD: keycloak
+      # KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled
+    depends_on:
+      - keycloakDB
+
+volumes:
+  demo_keycloakdata:
