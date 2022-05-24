@@ -17,7 +17,7 @@
       "applicationUrl": "http://localhost:5161",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "KEYCLOAK_ENDPOINT": "http://localhost:8080/auth/realms/master",
+        "KEYCLOAK_ENDPOINT": "http://localhost:8080/realms/master",
         "KEYCLOAK_CLIENT_ID": "dotnet-demo",
         "KEYCLOAK_CLIENT_SECRET": "m383YWl9QiOBOrgiM80xdzXyQK0JYWme"
       }
