@@ -78,7 +78,7 @@ You can add roles for your user by selecting your user and then going to the `Ro
 
 ||||
 |-|-|-|
-| KEYCLOAK_ENDPOINT | http://localhost:8080/auth/realms/master | |
+| KEYCLOAK_ENDPOINT | http://localhost:8080/realms/master | _http://localhost:8080/auth/realms/master_ in versions before Keycloak 17.0 |
 | KEYCLOAK_CLIENT_ID | dotnet-demo | _The name of the client you created_ |
 | KEYCLOAK_CLIENT_SECRET | m383YWl9QiOBOrgiM80xdzXyQK0JYWme | _The secret from the step 7. in Keycloak Setup_ |
 
